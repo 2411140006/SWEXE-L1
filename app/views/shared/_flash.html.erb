@@ -1,13 +1,11 @@
 <% if notice %>
-  <div class="flash flash-notice">
-    <span class="flash-icon">✅</span>
-    <span><%= notice %></span>
+  <div class="flash-notice">
+    <%= notice %>
   </div>
 <% end %>
 
 <% if alert %>
-  <div class="flash flash-alert">
-    <span class="flash-icon">⚠️</span>
-    <span><%= alert %></span>
+  <div class="flash-alert">
+    <%= alert %>
   </div>
 <% end %>

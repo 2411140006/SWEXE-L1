@@ -1,7 +1,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
-  # 存在しないIDにアクセスされた場合のエラー処理
+
   rescue_from ActiveRecord::RecordNotFound do
     redirect_to books_path, alert: "指定された本が見つかりませんでした。"
   end

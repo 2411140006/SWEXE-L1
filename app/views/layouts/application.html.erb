@@ -9,15 +9,10 @@
   </head>
 
   <body>
-    <header class="site-header">
-      <div class="container">
-        <%= link_to "蔵書管理アプリ", root_path, class: "site-title" %>
-      </div>
-    </header>
+    <p><%= link_to "蔵書管理アプリ", root_path %></p>
+    <hr>
 
-    <main class="container">
-      <%= render "shared/flash" %>
-      <%= yield %>
-    </main>
+    <%= render "shared/flash" %>
+    <%= yield %>
   </body>
 </html>
