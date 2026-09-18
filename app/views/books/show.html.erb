@@ -1,12 +1,22 @@
-<% if notice %>
-  <p style="color: green;"><%= notice %></p>
-<% end %>
-
 <h1><%= @book.title %></h1>
 
-<p><strong>著者：</strong><%= @book.author %></p>
-<p><strong>出版日：</strong><%= @book.published_on %></p>
-<p><strong>紹介文：</strong><br><%= simple_format(@book.description) %></p>
+<div class="book-card">
+  <dl>
+    <dt>著者</dt>
+    <dd><%= @book.author %></dd>
 
-<%= link_to "編集", edit_book_path(@book) %> |
-<%= link_to "一覧に戻る", books_path %>
+    <dt>出版日</dt>
+    <dd><%= @book.published_on %></dd>
+
+    <dt>紹介文</dt>
+    <dd><%= simple_format(@book.description.presence || "（紹介文はありません）") %></dd>
+  </dl>
+</div>
+
+<div class="actions">
+  <%= link_to "編集", edit_book_path(@book), class: "btn btn-edit" %>
+  <%= link_to "削除", book_path(@book), class: "btn btn-delete",
+        data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
+</div>
+
+<%= link_to "← 一覧に戻る", books_path, class: "back-link" %>

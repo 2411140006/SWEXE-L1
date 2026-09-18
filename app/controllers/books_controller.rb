@@ -1,6 +1,11 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update, :destroy]
 
+  # 存在しないIDにアクセスされた場合のエラー処理
+  rescue_from ActiveRecord::RecordNotFound do
+    redirect_to books_path, alert: "指定された本が見つかりませんでした。"
+  end
+
   # GET /books
   def index
     @books = Book.all.order(created_at: :desc)
@@ -20,8 +25,9 @@ class BooksController < ApplicationController
     @book = Book.new(book_params)
 
     if @book.save
-      redirect_to @book, notice: "本を登録しました。"
+      redirect_to @book, notice: "「#{@book.title}」を登録しました。"
     else
+      flash.now[:alert] = "入力内容に誤りがあります。ご確認ください。"
       render :new, status: :unprocessable_entity
     end
   end
@@ -33,16 +39,18 @@ class BooksController < ApplicationController
   # PATCH/PUT /books/:id
   def update
     if @book.update(book_params)
-      redirect_to @book, notice: "本の情報を更新しました。"
+      redirect_to @book, notice: "「#{@book.title}」の情報を更新しました。"
     else
+      flash.now[:alert] = "入力内容に誤りがあります。ご確認ください。"
       render :edit, status: :unprocessable_entity
     end
   end
 
   # DELETE /books/:id
   def destroy
+    title = @book.title
     @book.destroy
-    redirect_to books_path, notice: "本を削除しました。", status: :see_other
+    redirect_to books_path, notice: "「#{title}」を削除しました。", status: :see_other
   end
 
   private
