@@ -1,48 +1,128 @@
-<header class="header">
-  <div class="header-inner">
-    <h1 class="site-title">
-      <%= link_to "本の管理システム", root_path %>
-    </h1>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>本の管理システム</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
 
-    <nav class="header-nav">
-      <%= link_to "ホーム", root_path %>
-      <%= link_to "本一覧", books_path %>
-    </nav>
-  </div>
-</header>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
 
-<div class="page-container">
-  <aside class="sidebar">
-    <h2>メニュー</h2>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
 
-    <ul class="sidebar-menu">
-      <li>
-        <%= link_to "ホーム", root_path %>
-      </li>
+  <body>
 
-      <li>
-        <%= link_to "本一覧", books_path %>
-      </li>
+    <header class="header">
+      <div class="header-inner">
 
-      <li>
-        <%= link_to "本を登録", new_book_path %>
-      </li>
-    </ul>
-  </aside>
+        <div class="logo-area">
+          <%= link_to "本の管理システム", root_path, class: "logo" %>
 
-  <main class="main-content">
-    <% if notice %>
-      <p class="notice"><%= notice %></p>
-    <% end %>
+          <p class="logo-subtitle">
+            本を登録・管理できるWebアプリ
+          </p>
+        </div>
 
-    <% if alert %>
-      <p class="alert"><%= alert %></p>
-    <% end %>
+        <nav class="header-nav">
+          <%= link_to "ホーム", root_path %>
+          <%= link_to "本一覧", books_path %>
+          <%= link_to "本を登録", new_book_path, class: "header-button" %>
+        </nav>
 
-    <%= yield %>
-  </main>
-</div>
+      </div>
+    </header>
 
-<footer class="footer">
-  <p>&copy; <%= Time.current.year %> 本の管理システム</p>
-</footer>
+
+    <div class="page-container">
+
+      <aside class="sidebar">
+
+        <div class="sidebar-section">
+          <p class="sidebar-title">MENU</p>
+
+          <ul class="sidebar-menu">
+
+            <li>
+              <%= link_to "ホーム", root_path, class: "sidebar-link" %>
+            </li>
+
+            <li>
+              <%= link_to "本一覧", books_path, class: "sidebar-link" %>
+            </li>
+
+            <li>
+              <%= link_to "本を登録する", new_book_path, class: "sidebar-link" %>
+            </li>
+
+          </ul>
+        </div>
+
+
+        <div class="sidebar-help">
+
+          <h3>ご利用方法</h3>
+
+          <p>
+            本一覧から登録されている本を確認できます。
+          </p>
+
+          <p>
+            新しい本を登録する場合は、
+            「本を登録する」を選択してください。
+          </p>
+
+        </div>
+
+      </aside>
+
+
+      <main class="main-content">
+
+        <% if notice %>
+          <div class="notice">
+            <%= notice %>
+          </div>
+        <% end %>
+
+        <% if alert %>
+          <div class="alert">
+            <%= alert %>
+          </div>
+        <% end %>
+
+        <%= yield %>
+
+      </main>
+
+    </div>
+
+
+    <footer class="footer">
+
+      <div class="footer-inner">
+
+        <div>
+          <strong>本の管理システム</strong>
+
+          <p>
+            本を簡単に登録・管理できます。
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <%= link_to "ホーム", root_path %>
+          <%= link_to "本一覧", books_path %>
+          <%= link_to "本を登録", new_book_path %>
+        </div>
+
+      </div>
+
+      <div class="copyright">
+        © <%= Time.current.year %> 本の管理システム
+      </div>
+
+    </footer>
+
+  </body>
+</html>

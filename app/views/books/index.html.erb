@@ -1,53 +1,104 @@
-<div class="page-header">
-  <h1>本一覧</h1>
+<div class="page-heading">
 
-  <%= link_to "本を登録する", new_book_path, class: "btn btn-primary" %>
+  <div>
+    <p class="page-category">BOOK LIST</p>
+
+    <h1>本一覧</h1>
+
+    <p class="page-description">
+      登録されている本を確認できます。
+      本の詳細を確認したり、内容を編集したりできます。
+    </p>
+  </div>
+
+  <%= link_to "本を登録する",
+              new_book_path,
+              class: "large-button" %>
+
 </div>
 
+
+<div class="section-heading">
+
+  <div>
+    <h2>登録されている本</h2>
+
+    <p>
+      現在登録されている本の一覧です。
+    </p>
+  </div>
+
+  <span class="book-count">
+    全 <%= @books.count %> 冊
+  </span>
+
+</div>
+
+
 <% if @books.any? %>
-  <div class="books-list">
+
+  <div class="books-grid">
 
     <% @books.each do |book| %>
+
       <article class="book-card">
 
-        <h2>
-          <%= link_to book.title, book_path(book) %>
-        </h2>
+        <div class="book-card-content">
 
-        <p class="book-body">
-          <%= truncate(book.body, length: 100) %>
-        </p>
+          <h3>
+            <%= link_to book.title, book_path(book) %>
+          </h3>
 
-        <div class="book-actions">
-          <%= link_to "詳細を見る",
-                      book_path(book),
-                      class: "btn btn-secondary" %>
+          <p class="book-description">
+            <%= truncate(book.body, length: 120) %>
+          </p>
 
-          <%= link_to "編集する",
-                      edit_book_path(book),
-                      class: "btn btn-secondary" %>
+          <div class="book-card-footer">
 
-          <%= link_to "削除する",
-                      book_path(book),
-                      data: {
-                        turbo_method: :delete,
-                        turbo_confirm: "この本を削除してもよろしいですか？"
-                      },
-                      class: "btn btn-danger" %>
+            <%= link_to "詳細を見る",
+                        book_path(book),
+                        class: "detail-link" %>
+
+            <div class="book-actions">
+
+              <%= link_to "編集",
+                          edit_book_path(book),
+                          class: "edit-link" %>
+
+              <%= link_to "削除",
+                          book_path(book),
+                          data: {
+                            turbo_method: :delete,
+                            turbo_confirm: "「#{book.title}」を削除してもよろしいですか？"
+                          },
+                          class: "delete-link" %>
+
+            </div>
+
+          </div>
+
         </div>
 
       </article>
+
     <% end %>
 
   </div>
+
 <% else %>
 
-  <div class="empty-message">
-    <p>まだ本が登録されていません。</p>
+  <div class="empty-state">
+
+    <h2>まだ本が登録されていません</h2>
+
+    <p>
+      最初の本を登録して、本の管理を始めましょう。
+    </p>
 
     <%= link_to "最初の本を登録する",
                 new_book_path,
-                class: "btn btn-primary" %>
+                class: "large-button" %>
+
   </div>
 
 <% end %>

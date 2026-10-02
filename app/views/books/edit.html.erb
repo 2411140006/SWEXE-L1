@@ -1,10 +1,41 @@
-<h1>本を編集</h1>
+<div class="page-heading">
 
-<div class="book-form">
-  <%= render "form" %>
+  <div>
+    <p class="page-category">EDIT BOOK</p>
+
+    <h1>本を編集する</h1>
+
+    <p class="page-description">
+      登録されている本の情報を変更できます。
+    </p>
+  </div>
+
 </div>
 
-<div class="page-links">
-  <%= link_to "この本を見る", @book, class: "btn btn-secondary" %>
-  <%= link_to "本一覧に戻る", books_path, class: "btn btn-secondary" %>
+
+<div class="form-container">
+
+  <div class="form-header">
+
+    <div>
+      <h2>本の情報を編集</h2>
+
+      <p>
+        変更したい項目を入力してください。
+      </p>
+    </div>
+
+  </div>
+
+  <%= render "form" %>
+
+</div>
+
+
+<div class="back-link-area">
+
+  <%= link_to "本の詳細に戻る", book_path(@book) %>
+
+  <%= link_to "本一覧を見る", books_path %>
+
 </div>

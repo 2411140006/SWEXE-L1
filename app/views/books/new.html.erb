@@ -1,9 +1,38 @@
-<h1>本を登録</h1>
+<div class="page-heading">
 
-<div class="book-form">
-  <%= render "form" %>
+  <div>
+    <p class="page-category">NEW BOOK</p>
+
+    <h1>本を登録する</h1>
+
+    <p class="page-description">
+      新しい本の情報を入力してください。
+      登録した本は本一覧から確認できます。
+    </p>
+  </div>
+
 </div>
 
-<div class="page-links">
-  <%= link_to "本一覧に戻る", books_path, class: "btn btn-secondary" %>
+
+<div class="form-container">
+
+  <div class="form-header">
+
+    <div>
+      <h2>本の情報</h2>
+
+      <p>
+        タイトルと本の内容を入力してください。
+      </p>
+    </div>
+
+  </div>
+
+  <%= render "form" %>
+
+</div>
+
+
+<div class="back-link-area">
+  <%= link_to "本一覧に戻る", books_path %>
 </div>
