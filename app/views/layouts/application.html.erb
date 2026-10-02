@@ -1,18 +1,48 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>蔵書管理アプリ</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "application" %>
-  </head>
+<header class="header">
+  <div class="header-inner">
+    <h1 class="site-title">
+      <%= link_to "本の管理システム", root_path %>
+    </h1>
 
-  <body>
-    <p><%= link_to "蔵書管理アプリ", root_path %></p>
-    <hr>
+    <nav class="header-nav">
+      <%= link_to "ホーム", root_path %>
+      <%= link_to "本一覧", books_path %>
+    </nav>
+  </div>
+</header>
 
-    <%= render "shared/flash" %>
+<div class="page-container">
+  <aside class="sidebar">
+    <h2>メニュー</h2>
+
+    <ul class="sidebar-menu">
+      <li>
+        <%= link_to "ホーム", root_path %>
+      </li>
+
+      <li>
+        <%= link_to "本一覧", books_path %>
+      </li>
+
+      <li>
+        <%= link_to "本を登録", new_book_path %>
+      </li>
+    </ul>
+  </aside>
+
+  <main class="main-content">
+    <% if notice %>
+      <p class="notice"><%= notice %></p>
+    <% end %>
+
+    <% if alert %>
+      <p class="alert"><%= alert %></p>
+    <% end %>
+
     <%= yield %>
-  </body>
-</html>
+  </main>
+</div>
+
+<footer class="footer">
+  <p>&copy; <%= Time.current.year %> 本の管理システム</p>
+</footer>

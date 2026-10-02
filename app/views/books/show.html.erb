@@ -1,13 +1,37 @@
-<h1><%= @book.title %></h1>
+<div class="page-header">
+  <h1>本の詳細</h1>
+</div>
 
-<p><strong>著者：</strong><%= @book.author %></p>
-<p><strong>出版日：</strong><%= @book.published_on %></p>
-<p><strong>紹介文：</strong><br><%= simple_format(@book.description.presence || "（紹介文はありません）") %></p>
+<div class="book-detail">
 
-<p>
-  <%= link_to "編集", edit_book_path(@book) %> |
-  <%= link_to "削除", book_path(@book),
-        data: { turbo_method: :delete, turbo_confirm: "本当に削除しますか？" } %>
-</p>
+  <div class="detail-item">
+    <h2>本のタイトル</h2>
+    <p><%= @book.title %></p>
+  </div>
 
-<%= link_to "一覧に戻る", books_path %>
+  <div class="detail-item">
+    <h2>感想・内容</h2>
+    <p class="detail-body">
+      <%= simple_format(@book.body) %>
+    </p>
+  </div>
+
+</div>
+
+<div class="page-links">
+  <%= link_to "編集する",
+              edit_book_path(@book),
+              class: "btn btn-primary" %>
+
+  <%= link_to "本一覧に戻る",
+              books_path,
+              class: "btn btn-secondary" %>
+
+  <%= link_to "削除する",
+              book_path(@book),
+              data: {
+                turbo_method: :delete,
+                turbo_confirm: "この本を削除してもよろしいですか？"
+              },
+              class: "btn btn-danger" %>
+</div>

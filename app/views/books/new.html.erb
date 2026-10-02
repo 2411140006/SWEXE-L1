@@ -1,5 +1,9 @@
-<h1>本の新規登録</h1>
+<h1>本を登録</h1>
 
-<%= render "form", book: @book %>
+<div class="book-form">
+  <%= render "form" %>
+</div>
 
-<%= link_to "一覧に戻る", books_path %>
+<div class="page-links">
+  <%= link_to "本一覧に戻る", books_path, class: "btn btn-secondary" %>
+</div>
