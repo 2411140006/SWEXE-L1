@@ -1,0 +1,79 @@
+<section class="hero">
+  <div class="container">
+    <div class="hero-content">
+      <p class="hero-label">BOOK NOTE</p>
+
+      <h1>
+        読んだ本を、<br>
+        いつでも振り返ろう。
+      </h1>
+
+      <p class="hero-description">
+        本のタイトルや内容を記録して、
+        自分だけの本の一覧を作ることができます。
+      </p>
+
+      <div class="hero-buttons">
+        <%= link_to "本一覧を見る", books_path, class: "button button-primary" %>
+        <%= link_to "本を登録する", new_book_path, class: "button button-outline" %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-heading">
+      <p class="section-label">FEATURE</p>
+      <h2>このサイトでできること</h2>
+      <p>
+        本の登録から編集、削除まで簡単に管理できます。
+      </p>
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <span class="feature-number">01</span>
+        <h3>本を登録する</h3>
+        <p>
+          読んだ本のタイトルや内容を入力して、
+          本の情報を登録できます。
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-number">02</span>
+        <h3>本を確認する</h3>
+        <p>
+          登録した本を一覧で確認したり、
+          詳しい内容を表示できます。
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <span class="feature-number">03</span>
+        <h3>情報を編集する</h3>
+        <p>
+          登録した本のタイトルや内容を
+          後から自由に変更できます。
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-box">
+      <div>
+        <p class="section-label">START</p>
+        <h2>まずは本を登録してみましょう</h2>
+        <p>
+          あなたが読んだ本を記録してみてください。
+        </p>
+      </div>
+
+      <%= link_to "本を登録する", new_book_path, class: "button button-white" %>
+    </div>
+  </div>
+</section>

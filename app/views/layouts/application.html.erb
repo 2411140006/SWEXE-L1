@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>本の管理システム</title>
+    <title>Book Note</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
-
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,102 +11,39 @@
   </head>
 
   <body>
-
-    <header class="header">
+    <header class="site-header">
       <div class="header-inner">
+        <%= link_to "BOOK NOTE", root_path, class: "site-logo" %>
 
-        <div class="logo-area">
-          <%= link_to "本の管理システム", root_path, class: "logo" %>
-
-          <p class="logo-subtitle">
-            本を登録・管理できるWebアプリ
-          </p>
-        </div>
-
-        <nav class="header-nav">
+        <nav class="main-nav">
           <%= link_to "ホーム", root_path %>
           <%= link_to "本一覧", books_path %>
-          <%= link_to "本を登録", new_book_path, class: "header-button" %>
+          <%= link_to "本を登録", new_book_path, class: "nav-button" %>
         </nav>
-
       </div>
     </header>
 
-
-    <div class="page-container">
-
-      <aside class="sidebar">
-
-        <div class="sidebar-section">
-          <p class="sidebar-title">MENU</p>
-
-          <ul class="sidebar-menu">
-
-            <li>
-              <%= link_to "ホーム", root_path, class: "sidebar-link" %>
-            </li>
-
-            <li>
-              <%= link_to "本一覧", books_path, class: "sidebar-link" %>
-            </li>
-
-            <li>
-              <%= link_to "本を登録する", new_book_path, class: "sidebar-link" %>
-            </li>
-
-          </ul>
+    <main>
+      <% if notice %>
+        <div class="flash flash-notice">
+          <%= notice %>
         </div>
+      <% end %>
 
-
-        <div class="sidebar-help">
-
-          <h3>ご利用方法</h3>
-
-          <p>
-            本一覧から登録されている本を確認できます。
-          </p>
-
-          <p>
-            新しい本を登録する場合は、
-            「本を登録する」を選択してください。
-          </p>
-
+      <% if alert %>
+        <div class="flash flash-alert">
+          <%= alert %>
         </div>
+      <% end %>
 
-      </aside>
+      <%= yield %>
+    </main>
 
-
-      <main class="main-content">
-
-        <% if notice %>
-          <div class="notice">
-            <%= notice %>
-          </div>
-        <% end %>
-
-        <% if alert %>
-          <div class="alert">
-            <%= alert %>
-          </div>
-        <% end %>
-
-        <%= yield %>
-
-      </main>
-
-    </div>
-
-
-    <footer class="footer">
-
+    <footer class="site-footer">
       <div class="footer-inner">
-
         <div>
-          <strong>本の管理システム</strong>
-
-          <p>
-            本を簡単に登録・管理できます。
-          </p>
+          <div class="footer-logo">BOOK NOTE</div>
+          <p>本を記録して、いつでも振り返れるWebサイト</p>
         </div>
 
         <div class="footer-links">
@@ -115,14 +51,11 @@
           <%= link_to "本一覧", books_path %>
           <%= link_to "本を登録", new_book_path %>
         </div>
-
       </div>
 
-      <div class="copyright">
-        © <%= Time.current.year %> 本の管理システム
+      <div class="footer-bottom">
+        <p>&copy; <%= Time.current.year %> BOOK NOTE</p>
       </div>
-
     </footer>
-
   </body>
 </html>

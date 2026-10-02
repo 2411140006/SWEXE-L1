@@ -1,68 +1,45 @@
-<div class="page-heading">
-
-  <div>
-    <p class="page-category">BOOK DETAIL</p>
+<section class="page-header">
+  <div class="container">
+    <p class="section-label">BOOK DETAIL</p>
 
     <h1>本の詳細</h1>
-
-    <p class="page-description">
-      登録されている本の情報を確認できます。
-    </p>
+    <p>登録されている本の詳細を確認できます。</p>
   </div>
+</section>
 
-</div>
-
-
-<div class="book-detail-card">
-
-  <div class="detail-content">
-
-    <div class="detail-section">
-
-      <p class="detail-label">
-        本のタイトル
-      </p>
-
-      <h2>
-        <%= @book.title %>
-      </h2>
-
-    </div>
-
-
-    <div class="detail-section">
-
-      <p class="detail-label">
-        本の内容・感想
-      </p>
-
-      <div class="detail-body">
-        <%= simple_format(@book.body) %>
+<section class="section">
+  <div class="container">
+    <article class="book-detail">
+      <div class="detail-header">
+        <p class="book-label">BOOK</p>
+        <h2><%= @book.title %></h2>
       </div>
 
-    </div>
+      <div class="detail-body">
+        <h3>本の内容・感想</h3>
 
+        <p>
+          <%= simple_format(@book.body) %>
+        </p>
+      </div>
+
+      <div class="detail-actions">
+        <%= link_to "本を編集する",
+                    edit_book_path(@book),
+                    class: "button button-primary" %>
+
+        <%= link_to "本一覧に戻る",
+                    books_path,
+                    class: "button button-outline" %>
+
+        <%= link_to "この本を削除する",
+                    book_path(@book),
+                    data: {
+                      turbo_method: :delete,
+                      turbo_confirm: "この本を削除しますか？"
+                    },
+                    class: "delete-text-link" %>
+      </div>
+    </article>
   </div>
-
-</div>
-
-
-<div class="detail-actions">
-
-  <%= link_to "本を編集する",
-              edit_book_path(@book),
-              class: "primary-button" %>
-
-  <%= link_to "本一覧に戻る",
-              books_path,
-              class: "secondary-button" %>
-
-  <%= link_to "この本を削除する",
-              book_path(@book),
-              data: {
-                turbo_method: :delete,
-                turbo_confirm: "「#{@book.title}」を削除してもよろしいですか？"
-              },
-              class: "danger-button" %>
-
-</div>
+</section>

@@ -1,68 +1,41 @@
-<%= form_with model: @book do |f| %>
+<%= form_with(model: book, class: "book-form") do |form| %>
 
-  <% if @book.errors.any? %>
-
-    <div class="error-message">
-
+  <% if book.errors.any? %>
+    <div class="form-errors">
       <h3>
-        入力内容を確認してください
+        <%= book.errors.count %>件のエラーがあります
       </h3>
 
       <ul>
-        <% @book.errors.full_messages.each do |message| %>
+        <% book.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
-
     </div>
-
   <% end %>
 
-
   <div class="form-group">
+    <%= form.label :title, "本のタイトル" %>
 
-    <%= f.label :title, "本のタイトル" %>
-
-    <p class="form-help">
-      本のタイトルを入力してください。
-    </p>
-
-    <%= f.text_field :title,
-                     class: "form-control",
-                     placeholder: "例：吾輩は猫である" %>
-
+    <%= form.text_field :title,
+        placeholder: "例：吾輩は猫である",
+        class: "form-input" %>
   </div>
 
-
   <div class="form-group">
+    <%= form.label :body, "本の内容・感想" %>
 
-    <%= f.label :body, "本の内容・感想" %>
-
-    <p class="form-help">
-      本の内容や感想などを入力してください。
-    </p>
-
-    <%= f.text_area :body,
-                    class: "form-control body-field",
-                    placeholder: "この本についての内容や感想を入力してください。" %>
-
+    <%= form.text_area :body,
+        rows: 10,
+        placeholder: "本の内容や感想を入力してください",
+        class: "form-textarea" %>
   </div>
 
-
-  <div class="form-actions">
-
-    <% if @book.new_record? %>
-
-      <%= f.submit "本を登録する",
-                   class: "submit-button" %>
-
-    <% else %>
-
-      <%= f.submit "変更を保存する",
-                   class: "submit-button" %>
-
-    <% end %>
-
+  <div class="form-submit">
+    <%= form.submit(
+      book.new_record? ? "本を登録する" : "変更を保存する",
+      class: "button button-primary"
+    ) %>
   </div>
 
 <% end %>

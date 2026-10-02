@@ -1,104 +1,70 @@
-<div class="page-heading">
+<section class="page-header">
+  <div class="container">
+    <p class="section-label">BOOKS</p>
 
-  <div>
-    <p class="page-category">BOOK LIST</p>
+    <div class="page-header-content">
+      <div>
+        <h1>本一覧</h1>
+        <p>
+          登録されている本を一覧で確認できます。
+        </p>
+      </div>
 
-    <h1>本一覧</h1>
-
-    <p class="page-description">
-      登録されている本を確認できます。
-      本の詳細を確認したり、内容を編集したりできます。
-    </p>
+      <%= link_to "本を登録する", new_book_path, class: "button button-primary" %>
+    </div>
   </div>
+</section>
 
-  <%= link_to "本を登録する",
-              new_book_path,
-              class: "large-button" %>
+<section class="section books-section">
+  <div class="container">
+    <div class="list-header">
+      <h2>登録されている本</h2>
+      <p><%= @books.count %>冊の本が登録されています。</p>
+    </div>
 
-</div>
+    <% if @books.any? %>
+      <div class="books-grid">
+        <% @books.each do |book| %>
+          <article class="book-card">
+            <div class="book-card-content">
+              <p class="book-label">BOOK</p>
 
+              <h3>
+                <%= book.title %>
+              </h3>
 
-<div class="section-heading">
-
-  <div>
-    <h2>登録されている本</h2>
-
-    <p>
-      現在登録されている本の一覧です。
-    </p>
-  </div>
-
-  <span class="book-count">
-    全 <%= @books.count %> 冊
-  </span>
-
-</div>
-
-
-<% if @books.any? %>
-
-  <div class="books-grid">
-
-    <% @books.each do |book| %>
-
-      <article class="book-card">
-
-        <div class="book-card-content">
-
-          <h3>
-            <%= link_to book.title, book_path(book) %>
-          </h3>
-
-          <p class="book-description">
-            <%= truncate(book.body, length: 120) %>
-          </p>
-
-          <div class="book-card-footer">
-
-            <%= link_to "詳細を見る",
-                        book_path(book),
-                        class: "detail-link" %>
-
-            <div class="book-actions">
-
-              <%= link_to "編集",
-                          edit_book_path(book),
-                          class: "edit-link" %>
-
-              <%= link_to "削除",
-                          book_path(book),
-                          data: {
-                            turbo_method: :delete,
-                            turbo_confirm: "「#{book.title}」を削除してもよろしいですか？"
-                          },
-                          class: "delete-link" %>
-
+              <p class="book-description">
+                <%= truncate(book.body, length: 100) %>
+              </p>
             </div>
 
-          </div>
+            <div class="book-card-footer">
+              <%= link_to "詳細を見る", book_path(book), class: "text-link" %>
 
-        </div>
+              <div class="card-actions">
+                <%= link_to "編集", edit_book_path(book), class: "small-link" %>
 
-      </article>
+                <%= link_to "削除",
+                    book_path(book),
+                    data: {
+                      turbo_method: :delete,
+                      turbo_confirm: "この本を削除しますか？"
+                    },
+                    class: "small-link delete-link" %>
+              </div>
+            </div>
+          </article>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="empty-state">
+        <h3>まだ本が登録されていません</h3>
+        <p>
+          最初の本を登録してみましょう。
+        </p>
 
+        <%= link_to "本を登録する", new_book_path, class: "button button-primary" %>
+      </div>
     <% end %>
-
   </div>
-
-<% else %>
-
-  <div class="empty-state">
-
-    <h2>まだ本が登録されていません</h2>
-
-    <p>
-      最初の本を登録して、本の管理を始めましょう。
-    </p>
-
-    <%= link_to "最初の本を登録する",
-                new_book_path,
-                class: "large-button" %>
-
-  </div>
-
-<% end %>
+</section>
